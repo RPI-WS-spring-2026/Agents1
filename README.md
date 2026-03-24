@@ -3,11 +3,26 @@
 Build multi-step AI workflows (chains) using LangChain. You'll learn how LLMs can be composed into pipelines where the output of one step feeds the next — and how to handle errors gracefully when things go wrong.
 
 **Time:** ~1.5 hours
-**Environment:** GitHub Codespaces (nothing to install locally)
+**Environment:** Google Colab (recommended for Python) or GitHub Codespaces
 
 ---
 
-## Opening Your Codespace
+## Getting Started
+
+### Option A: Google Colab (Recommended for the Python notebook)
+
+Click the badge below to open the Python notebook directly in Colab — no setup required:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RPI-WS-spring-2026/Agents1/blob/main/python-workflow/workflow_example.ipynb)
+
+**Setting your API key in Colab:**
+1. Click the **key icon** (🔑) in the left sidebar
+2. Add a new secret named `OPENAI_API_KEY` with your key as the value
+3. Toggle **"Notebook access"** on
+
+> **Note:** For the Node.js exercises (Parts 2a and 2b), use Codespaces (Option B below).
+
+### Option B: GitHub Codespaces (Full lab — Python + Node.js)
 
 1. Accept the GitHub Classroom assignment using the link provided by your instructor
 2. Go to **your** assignment repository
