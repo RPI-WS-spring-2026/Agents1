@@ -1,26 +1,10 @@
 {
   "name": "LangChain AI Workflows Lab",
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.11"
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
-    }
-  },
-  "postCreateCommand": "pip install -r python-workflow/requirements.txt && cd node-workflow-basic && npm install && cd ../node-workflow-advanced && npm install",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "postCreateCommand": "cd node-workflow-basic && npm install && cd ../node-workflow-advanced && npm install",
   "secrets": {
     "GROQ_API_KEY": {
       "description": "Free Groq API key from https://console.groq.com"
-    }
-  },
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-python.python",
-        "ms-toolsai.jupyter"
-      ]
     }
   },
   "forwardPorts": [3000]

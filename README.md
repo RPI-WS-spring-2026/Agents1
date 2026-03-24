@@ -23,18 +23,19 @@ Click the badge below to open the Python notebook directly in Colab — no setup
 
 > **Note:** For the Node.js exercises (Parts 2a and 2b), use Codespaces (Option B below).
 
-### Option B: GitHub Codespaces (Full lab — Python + Node.js)
+### Option B: GitHub Codespaces (Node.js exercises)
+
+The Codespace is a lightweight Node.js environment — it should start in under a minute.
 
 1. Accept the GitHub Classroom assignment using the link provided by your instructor
 2. Go to **your** assignment repository
 3. Click the green **Code** button, then the **Codespaces** tab
 4. Click **Create codespace on main**
-5. Wait for the environment to load (1-2 minutes the first time)
 
-**Verify you're in the right repo:**
+When it opens, the Node.js dependencies install automatically. Set your API key:
 
 ```bash
-git remote -v
+export GROQ_API_KEY="your-key-here"
 ```
 
 ---
