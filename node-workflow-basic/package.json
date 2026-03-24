@@ -1,0 +1,16 @@
+{
+  "name": "node-workflow-basic",
+  "version": "1.0.0",
+  "description": "Basic LangChain.js AI workflow example",
+  "main": "workflow.js",
+  "type": "module",
+  "scripts": {
+    "start": "node workflow.js"
+  },
+  "dependencies": {
+    "@langchain/openai": "^0.3.0",
+    "@langchain/core": "^0.3.0",
+    "langchain": "^0.3.0",
+    "dotenv": "^16.3.0"
+  }
+}
