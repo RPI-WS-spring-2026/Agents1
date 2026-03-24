@@ -430,7 +430,7 @@ add_two_column_slide(
     "Fallback Chains",
     [
         "If primary model/approach fails, try backup",
-        "GPT-4 fails? Try GPT-3.5 as fallback",
+        "Llama-70B fails? Try Llama-8B as fallback",
         "Structured output fails? Try simpler format",
         "Graceful degradation > hard failure",
     ]
@@ -440,16 +440,15 @@ add_two_column_slide(
 add_code_slide(
     "LangChain: The Pipe Operator",
     """# Python — compose with the | operator
-from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import os
 
-# xAI Grok — free API, OpenAI-compatible
-llm = ChatOpenAI(
-    model="grok-3-mini-fast",
-    base_url="https://api.x.ai/v1",
-    api_key=os.environ["XAI_API_KEY"],
+# Groq — free API, ultra-fast inference
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    api_key=os.environ["GROQ_API_KEY"],
 )
 
 chain = (
@@ -465,17 +464,14 @@ result = chain.invoke({"topic": "WebSockets"})""",
 add_code_slide(
     "LangChain.js: Same Pattern in JavaScript",
     """// JavaScript — same pipe pattern
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGroq } from "@langchain/groq";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
-// xAI Grok — free API, OpenAI-compatible
-const llm = new ChatOpenAI({
-    model: "grok-3-mini-fast",
-    configuration: {
-        baseURL: "https://api.x.ai/v1",
-        apiKey: process.env.XAI_API_KEY,
-    },
+// Groq — free API, ultra-fast inference
+const llm = new ChatGroq({
+    model: "llama-3.3-70b-versatile",
+    apiKey: process.env.GROQ_API_KEY,
 });
 
 const chain = ChatPromptTemplate
@@ -590,8 +586,8 @@ add_code_slide(
 add_code_slide(
     "Pattern 3: Fallback Chains",
     """# LangChain built-in fallbacks
-primary_llm  = ChatOpenAI(model="grok-3-mini-fast", ...)
-fallback_llm = ChatOpenAI(model="grok-3-mini-fast", temperature=0.3, ...)
+primary_llm  = ChatGroq(model="llama-3.3-70b-versatile")
+fallback_llm = ChatGroq(model="llama-3.1-8b-instant")  # smaller fallback
 
 # If primary fails, automatically try fallback
 robust_llm = primary_llm.with_fallbacks([fallback_llm])
@@ -920,7 +916,7 @@ add_content_slide(
     ],
     sub_bullets={
         4: [
-            "Use faster/cheaper models (grok-3-mini-fast) for classification/simple steps",
+            "Use faster/smaller models (llama-3.1-8b-instant) for classification/simple steps",
             "Cache results where possible",
             "Set max_retries and budget limits",
             "Log token usage to understand costs",

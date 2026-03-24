@@ -12,27 +12,24 @@
  */
 
 import "dotenv/config";
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGroq } from "@langchain/groq";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
 // --- Configuration ---
-// Uses xAI's Grok API (free) — get a key at https://console.x.ai
+// Uses Groq API (free, ultra-fast inference) — get a key at https://console.groq.com
 
-if (!process.env.XAI_API_KEY) {
-  console.error("ERROR: XAI_API_KEY is not set.");
-  console.error("Get a free key at https://console.x.ai");
-  console.error('Set it with: export XAI_API_KEY="your-key-here"');
+if (!process.env.GROQ_API_KEY) {
+  console.error("ERROR: GROQ_API_KEY is not set.");
+  console.error("Get a free key at https://console.groq.com");
+  console.error('Set it with: export GROQ_API_KEY="your-key-here"');
   process.exit(1);
 }
 
-const llm = new ChatOpenAI({
-  model: "grok-3-mini-fast",
+const llm = new ChatGroq({
+  model: "llama-3.3-70b-versatile",
   temperature: 0.7,
-  configuration: {
-    baseURL: "https://api.x.ai/v1",
-    apiKey: process.env.XAI_API_KEY,
-  },
+  apiKey: process.env.GROQ_API_KEY,
 });
 const outputParser = new StringOutputParser();
 
