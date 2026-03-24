@@ -17,14 +17,23 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
 // --- Configuration ---
+// Uses xAI's Grok API (free) — get a key at https://console.x.ai
 
-if (!process.env.OPENAI_API_KEY) {
-  console.error("ERROR: OPENAI_API_KEY is not set.");
-  console.error('Set it with: export OPENAI_API_KEY="your-key-here"');
+if (!process.env.XAI_API_KEY) {
+  console.error("ERROR: XAI_API_KEY is not set.");
+  console.error("Get a free key at https://console.x.ai");
+  console.error('Set it with: export XAI_API_KEY="your-key-here"');
   process.exit(1);
 }
 
-const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0.7 });
+const llm = new ChatOpenAI({
+  model: "grok-3-mini-fast",
+  temperature: 0.7,
+  configuration: {
+    baseURL: "https://api.x.ai/v1",
+    apiKey: process.env.XAI_API_KEY,
+  },
+});
 const outputParser = new StringOutputParser();
 
 // --- Custom Error Classes ---

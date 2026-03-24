@@ -16,9 +16,10 @@ Click the badge below to open the Python notebook directly in Colab — no setup
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/RPI-WS-spring-2026/Agents1/blob/main/python-workflow/workflow_example.ipynb)
 
 **Setting your API key in Colab:**
-1. Click the **key icon** (🔑) in the left sidebar
-2. Add a new secret named `OPENAI_API_KEY` with your key as the value
-3. Toggle **"Notebook access"** on
+1. Get a free API key at [console.x.ai](https://console.x.ai)
+2. Click the **key icon** (🔑) in the Colab left sidebar
+3. Add a new secret named `XAI_API_KEY` with your Grok API key as the value
+4. Toggle **"Notebook access"** on
 
 > **Note:** For the Node.js exercises (Parts 2a and 2b), use Codespaces (Option B below).
 
@@ -93,10 +94,11 @@ Open `workflow_example.ipynb` in your Codespace. This notebook walks you through
 
 Work through each cell, reading the explanations and running the code. Modify the prompts to see how changes affect the output.
 
-> **API Key:** You'll need an OpenAI API key. Your instructor will provide one, or you can use your own. Set it as an environment variable:
+> **API Key:** This lab uses **xAI's Grok API** (free). Get a key at [console.x.ai](https://console.x.ai), then set it:
 > ```bash
-> export OPENAI_API_KEY="your-key-here"
+> export XAI_API_KEY="your-key-here"
 > ```
+> On Colab, add it as a Secret named `XAI_API_KEY` (see setup instructions above).
 
 ---
 
@@ -266,4 +268,4 @@ Make sure your `my-workflow/` directory contains:
 
 - **Stopping your Codespace:** Auto-stops after 30 minutes of inactivity. Manually stop at [github.com/codespaces](https://github.com/codespaces).
 - **Multiple terminals:** Click `+` in the terminal panel. You may want separate terminals for Python and Node.js.
-- **Environment variables:** Set your API key once per terminal session with `export OPENAI_API_KEY="..."`, or create a `.env` file (but **never commit it**).
+- **Environment variables:** Set your API key once per terminal session with `export XAI_API_KEY="..."`, or create a `.env` file with `XAI_API_KEY=your-key` (but **never commit it**).

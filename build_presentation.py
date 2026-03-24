@@ -443,15 +443,20 @@ add_code_slide(
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+import os
 
-llm = ChatOpenAI(model="gpt-4o-mini")
+# xAI Grok — free API, OpenAI-compatible
+llm = ChatOpenAI(
+    model="grok-3-mini-fast",
+    base_url="https://api.x.ai/v1",
+    api_key=os.environ["XAI_API_KEY"],
+)
 
 chain = (
     ChatPromptTemplate.from_template("Tell me about {topic}")
     | llm
     | StrOutputParser()
 )
-
 result = chain.invoke({"topic": "WebSockets"})""",
     "PYTHON",
     "The pipe operator connects Prompt → LLM → Output Parser into a single callable chain."
@@ -464,7 +469,14 @@ import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 
-const llm = new ChatOpenAI({ model: "gpt-4o-mini" });
+// xAI Grok — free API, OpenAI-compatible
+const llm = new ChatOpenAI({
+    model: "grok-3-mini-fast",
+    configuration: {
+        baseURL: "https://api.x.ai/v1",
+        apiKey: process.env.XAI_API_KEY,
+    },
+});
 
 const chain = ChatPromptTemplate
     .fromTemplate("Tell me about {topic}")
@@ -578,8 +590,8 @@ add_code_slide(
 add_code_slide(
     "Pattern 3: Fallback Chains",
     """# LangChain built-in fallbacks
-primary_llm  = ChatOpenAI(model="gpt-4o")
-fallback_llm = ChatOpenAI(model="gpt-4o-mini")
+primary_llm  = ChatOpenAI(model="grok-3-mini-fast", ...)
+fallback_llm = ChatOpenAI(model="grok-3-mini-fast", temperature=0.3, ...)
 
 # If primary fails, automatically try fallback
 robust_llm = primary_llm.with_fallbacks([fallback_llm])
@@ -908,7 +920,7 @@ add_content_slide(
     ],
     sub_bullets={
         4: [
-            "Use cheaper models (gpt-4o-mini) for classification/simple steps",
+            "Use faster/cheaper models (grok-3-mini-fast) for classification/simple steps",
             "Cache results where possible",
             "Set max_retries and budget limits",
             "Log token usage to understand costs",
